@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 import requests
 
@@ -12,7 +12,7 @@ def index():
 @app.route('/api/getJoke', methods=['GET'])
 def send_request():
     joke = get_joke()
-    return joke
+    return jsonify({'joke': joke})
 
 def get_joke():
     response = requests.get("https://sv443.net/jokeapi/v2/joke/Programming?type=single")
